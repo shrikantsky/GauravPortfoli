@@ -1,1 +1,961 @@
-hello
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaurav Khaire | Model Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f0f0f;
+            --secondary: #f8f6f3;
+            --accent: #c9a87c;
+            --text-light: #888;
+            --white: #ffffff;
+            --dark-card: #1a1a1a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--secondary);
+            color: var(--primary);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(248, 246, 243, 0.95);
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #e8e0d8 0%, #d4c8bc 50%, #c9a87c 100%);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5.5rem;
+            font-weight: 700;
+            letter-spacing: 10px;
+            margin-bottom: 15px;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--primary);
+            opacity: 0.7;
+            margin-bottom: 50px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin-top: 60px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--primary);
+            opacity: 0.6;
+            margin-top: 8px;
+        }
+
+        /* About Section */
+        .about {
+            padding: 120px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            right: -25px;
+            bottom: -25px;
+            border: 2px solid var(--accent);
+            z-index: -1;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 650px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .about-content .intro {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        /* Measurements Table */
+        .measurements {
+            margin-top: 40px;
+            background: var(--white);
+            padding: 35px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+
+        .measurements h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--accent);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .measurement-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .measurement-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .measurement-item .label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-light);
+        }
+
+        .measurement-item .value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Portfolio Gallery - Multi Angle */
+        .portfolio {
+            padding: 120px 50px;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .gallery-category {
+            margin-bottom: 80px;
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--accent);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 3/4;
+            background: #f0f0f0;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease, filter 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.75);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: var(--white);
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .gallery-overlay p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
+
+        .placeholder-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #999;
+            font-size: 0.9rem;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 120px 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 60px;
+            padding-left: 50px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -56px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--secondary);
+        }
+
+        .timeline-year {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .timeline-content p {
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .brand-tag {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            padding: 5px 15px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 15px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 50px;
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact > p {
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 60px;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto 60px;
+        }
+
+        .contact-card {
+            padding: 50px 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s ease;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .contact-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .contact-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .contact-card p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .social-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 8px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px;
+            text-align: center;
+            background: var(--primary);
+            color: rgba(255,255,255,0.4);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 25px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-links a {
+                font-size: 0.75rem;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+                letter-spacing: 5px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .measurement-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content h2,
+            .section-header h2,
+            .contact h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">GK</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Gaurav Khaire</h1>
+            <p class="subtitle">Fashion & Commercial Model</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">5'8"</div>
+                    <div class="stat-label">Height</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">36-30-34</div>
+                    <div class="stat-label">Measurements</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">Samsung</div>
+                    <div class="stat-label">Featured Brand</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=1000&fit=crop" alt="Gaurav Khaire - Main Portrait">
+        </div>
+        <div class="about-content fade-in">
+            <h2>About Me</h2>
+            <p class="intro">Professional model with experience in commercial and fashion campaigns. I've had the opportunity to work with leading brands like Samsung and various emerging fashion labels, bringing versatility and dedication to every shoot.</p>
+            <p class="intro">Based in India, I specialize in commercial modeling, product campaigns, and editorial shoots. My approach combines professionalism with adaptability, ensuring the vision of photographers and brands comes to life.</p>
+
+            <div class="measurements">
+                <h3>Measurements</h3>
+                <div class="measurement-grid">
+                    <div class="measurement-item">
+                        <span class="label">Height</span>
+                        <span class="value">5'8" / 173cm</span>
+                    </div>
+                    <div class="measurement-item">
+                        <span class="label">Chest</span>
+                        <span class="value">36" / 91cm</span>
+                    </div>
+                    <div class="measurement-item">
+                        <span class="label">Waist</span>
+                        <span class="value">30" / 76cm</span>
+                    </div>
+                    <div class="measurement-item">
+                        <span class="label">Hips</span>
+                        <span class="value">34" / 86cm</span>
+                    </div>
+                    <div class="measurement-item">
+                        <span class="label">Hair</span>
+                        <span class="value">Black</span>
+                    </div>
+                    <div class="measurement-item">
+                        <span class="label">Eyes</span>
+                        <span class="value">Dark Brown</span>
+                    </div>
+                    <div class="measurement-item">
+                        <span class="label">Shoe</span>
+                        <span class="value">US 9 / EU 42</span>
+                    </div>
+                    <div class="measurement-item">
+                        <span class="label">Fit</span>
+                        <span class="value">Slim Athletic</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Gallery -->
+    <section class="portfolio" id="portfolio">
+        <div class="section-header fade-in">
+            <h2>Portfolio</h2>
+            <p>Multi-Angle Portfolio Shots</p>
+        </div>
+
+        <!-- Left Side Portfolio -->
+        <div class="gallery-category">
+            <div class="category-title">Left Side Profile</div>
+            <div class="gallery">
+                <div class="gallery-item fade-in">
+                    <div class="placeholder-text">ADD YOUR<br>LEFT SIDE<br>PHOTO HERE</div>
+                    <img src="" alt="Left Side - Shot 1" style="opacity:0">
+                    <div class="gallery-overlay">
+                        <h3>Left Profile</h3>
+                        <p>Angle 1</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <div class="placeholder-text">ADD YOUR<br>LEFT SIDE<br>PHOTO HERE</div>
+                    <img src="" alt="Left Side - Shot 2" style="opacity:0">
+                    <div class="gallery-overlay">
+                        <h3>Left Profile</h3>
+                        <p>Angle 2</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <div class="placeholder-text">ADD YOUR<br>LEFT SIDE<br>PHOTO HERE</div>
+                    <img src="" alt="Left Side - Shot 3" style="opacity:0">
+                    <div class="gallery-overlay">
+                        <h3>Left Profile</h3>
+                        <p>Angle 3</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <div class="placeholder-text">ADD YOUR<br>LEFT SIDE<br>PHOTO HERE</div>
+                    <img src="" alt="Left Side - Shot 4" style="opacity:0">
+                    <div class="gallery-overlay">
+                        <h3>Left Profile</h3>
+                        <p>Angle 4</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side Portfolio -->
+        <div class="gallery-category">
+            <div class="category-title">Right Side Profile</div>
+            <div class="gallery">
+                <div class="gallery-item fade-in">
+                    <div class="placeholder-text">ADD YOUR<br>RIGHT SIDE<br>PHOTO HERE</div>
+                    <img src="" alt="Right Side - Shot 1" style="opacity:0">
+                    <div class="gallery-overlay">
+                        <h3>Right Profile</h3>
+                        <p>Angle 1</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <div class="placeholder-text">ADD YOUR<br>RIGHT SIDE<br>PHOTO HERE</div>
+                    <img src="" alt="Right Side - Shot 2" style="opacity:0">
+                    <div class="gallery-overlay">
+                        <h3>Right Profile</h3>
+                        <p>Angle 2</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <div class="placeholder-text">ADD YOUR<br>RIGHT SIDE<br>PHOTO HERE</div>
+                    <img src="" alt="Right Side - Shot 3" style="opacity:0">
+                    <div class="gallery-overlay">
+                        <h3>Right Profile</h3>
+                        <p>Angle 3</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <div class="placeholder-text">ADD YOUR<br>RIGHT SIDE<br>PHOTO HERE</div>
+                    <img src="" alt="Right Side - Shot 4" style="opacity:0">
+                    <div class="gallery-overlay">
+                        <h3>Right Profile</h3>
+                        <p>Angle 4</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Front Side Portfolio -->
+        <div class="gallery-category">
+            <div class="category-title">Front View</div>
+            <div class="gallery">
+                <div class="gallery-item fade-in">
+                    <div class="placeholder-text">ADD YOUR<br>FRONT VIEW<br>PHOTO HERE</div>
+                    <img src="" alt="Front - Shot 1" style="opacity:0">
+                    <div class="gallery-overlay">
+                        <h3>Front View</h3>
+                        <p>Shot 1</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <div class="placeholder-text">ADD YOUR<br>FRONT VIEW<br>PHOTO HERE</div>
+                    <img src="" alt="Front - Shot 2" style="opacity:0">
+                    <div class="gallery-overlay">
+                        <h3>Front View</h3>
+                        <p>Shot 2</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <div class="placeholder-text">ADD YOUR<br>FRONT VIEW<br>PHOTO HERE</div>
+                    <img src="" alt="Front - Shot 3" style="opacity:0">
+                    <div class="gallery-overlay">
+                        <h3>Front View</h3>
+                        <p>Shot 3</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <div class="placeholder-text">ADD YOUR<br>FRONT VIEW<br>PHOTO HERE</div>
+                    <img src="" alt="Front - Shot 4" style="opacity:0">
+                    <div class="gallery-overlay">
+                        <h3>Front View</h3>
+                        <p>Shot 4</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- All Angles / Full Body -->
+        <div class="gallery-category">
+            <div class="category-title">Full Body & All Angles</div>
+            <div class="gallery">
+                <div class="gallery-item fade-in">
+                    <div class="placeholder-text">ADD YOUR<br>FULL BODY<br>PHOTO HERE</div>
+                    <img src="" alt="Full Body - Shot 1" style="opacity:0">
+                    <div class="gallery-overlay">
+                        <h3>Full Body</h3>
+                        <p>Shot 1</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <div class="placeholder-text">ADD YOUR<br>FULL BODY<br>PHOTO HERE</div>
+                    <img src="" alt="Full Body - Shot 2" style="opacity:0">
+                    <div class="gallery-overlay">
+                        <h3>Full Body</h3>
+                        <p>Shot 2</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <div class="placeholder-text">ADD YOUR<br>BACK VIEW<br>PHOTO HERE</div>
+                    <img src="" alt="Back View" style="opacity:0">
+                    <div class="gallery-overlay">
+                        <h3>Back View</h3>
+                        <p>Angle Shot</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <div class="placeholder-text">ADD YOUR<br>CREATIVE<br>SHOT HERE</div>
+                    <img src="" alt="Creative Shot" style="opacity:0">
+                    <div class="gallery-overlay">
+                        <h3>Creative</h3>
+                        <p>Special Shot</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="section-header fade-in">
+            <h2>Career Experience</h2>
+            <p>Professional Journey</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-year">Present</div>
+                <div class="timeline-content">
+                    <h3>Samsung - Commercial Campaign</h3>
+                    <p>Featured model for Samsung's latest smartphone and electronics campaigns. Worked on product-focused commercial shoots highlighting the brand's innovative technology and lifestyle appeal.</p>
+                    <span class="brand-tag">Major Brand</span>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-year">Recent</div>
+                <div class="timeline-content">
+                    <h3>Emerging Fashion Brands</h3>
+                    <p>Collaborated with multiple up-and-coming fashion labels and local designers. Participated in lookbook shoots, catalog modeling, and small-scale runway shows for indie brands building their presence in the market.</p>
+                    <span class="brand-tag">Fashion</span>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-year">Ongoing</div>
+                <div class="timeline-content">
+                    <h3>Freelance Commercial Modeling</h3>
+                    <p>Active freelance model working across commercial, product, and editorial shoots. Building a diverse portfolio with experience in e-commerce, print advertisements, and digital content creation.</p>
+                    <span class="brand-tag">Freelance</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Get In Touch</h2>
+        <p>For bookings, collaborations, and inquiries</p>
+
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3>Bookings</h3>
+                <p>gaurav.khaire@email.com<br>+91 XXXXX XXXXX<br>Available for travel</p>
+            </div>
+            <div class="contact-card">
+                <h3>Location</h3>
+                <p>Based in India<br>Available Nationwide<br>International Travel Ready</p>
+            </div>
+            <div class="contact-card">
+                <h3>Social</h3>
+                <p>@gauravkhaire<br>Portfolio Updates<br>Behind the Scenes</p>
+            </div>
+        </div>
+
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">LinkedIn</a>
+        </div>
+    </section>
+
+    <footer>
+        <p> Gaurav Khaire. All Rights Reserved. Professional Model Portfolio.</p>
+    </footer>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -60px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar shadow on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 80) {
+                nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>
