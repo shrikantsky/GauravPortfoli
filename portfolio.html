@@ -1,1 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaurav Khaire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #f5f5f5; color: #1a1a1a; line-height: 1.6; font-weight: 400; }
+        .container { max-width: 900px; margin: 0 auto; background: #fff; min-height: 100vh; }
 
+        /* Header */
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 30px 50px 20px; border-bottom: 1px solid #e0e0e0; }
+        .logo { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
+        .instagram-link { display: flex; align-items: center; gap: 8px; text-decoration: none; color: #1a1a1a; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; border: 1px solid #ccc; border-radius: 50px; padding: 6px 16px; transition: all 0.3s; }
+        .instagram-link:hover { border-color: #1a1a1a; background: #1a1a1a; color: #fff; }
+        .instagram-link svg { width: 16px; height: 16px; }
+
+        /* Hero */
+        .hero { padding: 50px 50px 30px; }
+        .hero-title { font-size: 2.8rem; font-weight: 300; line-height: 1.1; letter-spacing: -1px; margin-bottom: 40px; }
+        .hero-title .highlight { display: inline-block; border: 1.5px solid #1a1a1a; border-radius: 50%; padding: 2px 12px; font-size: 0.9em; margin-right: 8px; font-weight: 400; }
+
+        /* Two col */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 0 50px 40px; }
+        .col-text { font-size: 0.8rem; line-height: 1.7; color: #444; }
+        .col-text p { margin-bottom: 15px; }
+
+        /* Full img */
+        .full-img { width: 100%; padding: 0 50px 40px; }
+        .full-img img { width: 100%; display: block; filter: grayscale(100%); object-fit: cover; max-height: 400px; }
+
+        /* Info bar */
+        .info-bar { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; padding: 0 50px 50px; font-size: 0.75rem; }
+        .info-item .label { text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 8px; font-size: 0.65rem; }
+        .info-item .value { font-weight: 500; line-height: 1.5; }
+        .social-circles { display: flex; gap: 10px; justify-content: flex-end; }
+        .circle { width: 32px; height: 32px; border: 1px solid #ccc; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s; text-decoration: none; color: #1a1a1a; }
+        .circle:hover { border-color: #1a1a1a; background: #1a1a1a; color: #fff; }
+
+        .divider { height: 1px; background: #e0e0e0; margin: 0 50px; }
+
+        /* The Model */
+        .section-two { padding: 50px; }
+        .section-header { font-size: 1.8rem; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 30px; }
+        .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+        .profile-img img { width: 100%; display: block; filter: grayscale(100%); }
+        .img-caption { font-size: 0.7rem; color: #666; margin-top: 15px; line-height: 1.5; }
+        .birth-date { font-size: 1.4rem; font-weight: 300; margin-top: 20px; letter-spacing: 1px; }
+        .profile-text { font-size: 0.8rem; line-height: 1.8; color: #444; }
+        .profile-text p { margin-bottom: 20px; }
+
+        /* Quote */
+        .quote-section { padding: 40px 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .quote-mark { font-size: 3rem; line-height: 1; color: #1a1a1a; margin-bottom: 10px; }
+        .quote-text { font-size: 0.8rem; line-height: 1.7; color: #555; font-style: italic; margin-bottom: 20px; }
+        .quote-author { font-size: 1.2rem; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; }
+        .star-icon { width: 40px; height: 40px; margin-top: 20px; }
+        .side-images { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .side-images img { width: 100%; display: block; filter: grayscale(100%); object-fit: cover; aspect-ratio: 3/4; }
+
+        /* Portfolio grid */
+        .photo-grid { padding: 50px; }
+        .grid-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: #888; margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        .grid-item { aspect-ratio: 3/4; background: #f0f0f0; overflow: hidden; }
+        .grid-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+
+        /* ── CAROUSEL ── */
+        .carousel-section { padding: 50px; border-top: 1px solid #e0e0e0; }
+        .carousel-wrap { position: relative; overflow: hidden; }
+        .carousel-track { display: flex; transition: transform 0.5s ease; }
+        .carousel-slide { min-width: 100%; position: relative; }
+        .carousel-slide img { width: 100%; display: block; max-height: 520px; object-fit: cover; filter: grayscale(100%); }
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.85); border: 1px solid #ccc; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.2s; }
+        .carousel-btn:hover { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+        .carousel-prev { left: 15px; }
+        .carousel-next { right: 15px; }
+        .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
+        .dot { width: 7px; height: 7px; border-radius: 50%; background: #ccc; cursor: pointer; transition: background 0.2s; }
+        .dot.active { background: #1a1a1a; }
+
+        /* ── VIDEOS ── */
+        .video-section { padding: 50px; border-top: 1px solid #e0e0e0; background: #fafafa; }
+        .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .video-item { position: relative; }
+        .video-item video { width: 100%; display: block; background: #000; max-height: 480px; }
+        .video-caption { font-size: 0.7rem; color: #888; margin-top: 10px; letter-spacing: 0.5px; }
+
+        /* Measurements */
+        .measurements { padding: 50px; background: #fafafa; }
+        .measurements-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px; }
+        .measure-item { text-align: center; }
+        .measure-item .num { font-size: 2rem; font-weight: 300; letter-spacing: -1px; margin-bottom: 5px; }
+        .measure-item .label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: #888; }
+
+        /* Contact */
+        .contact { padding: 50px; text-align: center; border-top: 1px solid #e0e0e0; }
+        .contact h3 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; color: #888; margin-bottom: 20px; }
+        .contact-info { font-size: 0.85rem; line-height: 2; color: #444; }
+        .contact-info a { color: #1a1a1a; text-decoration: none; }
+        .contact-info a:hover { text-decoration: underline; }
+
+        /* Footer */
+        .footer { padding: 30px 50px; border-top: 1px solid #e0e0e0; display: flex; justify-content: space-between; font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+
+        @media (max-width: 768px) {
+            .two-col, .profile-grid, .quote-section, .video-grid { grid-template-columns: 1fr; }
+            .info-bar { grid-template-columns: 1fr; }
+            .measurements-grid { grid-template-columns: repeat(3, 1fr); }
+            .grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-title { font-size: 2rem; }
+            .header, .hero, .two-col, .full-img, .info-bar, .section-two, .quote-section, .photo-grid, .carousel-section, .video-section, .measurements, .contact, .footer { padding-left: 25px; padding-right: 25px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">Gaurav Khaire</div>
+        <a href="https://www.instagram.com/gaurravkkhairre?igsh=dzdlODNmZjdsMHVx&utm_source=qr" target="_blank" class="instagram-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+            @gaurravkkhairre
+        </a>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+        <h1 class="hero-title"><span class="highlight">WHO</span> IS<br>GAURAV KHAIRE?</h1>
+    </div>
+
+    <div class="two-col">
+        <div class="col-text"><p>Professional fashion and commercial model based in India. Specializing in editorial shoots, product campaigns, and runway presentations with a focus on authentic presence and versatile styling.</p></div>
+        <div class="col-text"><p>With experience spanning major brands like Samsung and emerging fashion labels, Gaurav brings a unique blend of commercial appeal and editorial depth to every project.</p></div>
+    </div>
+
+    <div class="full-img">
+        <img src="https://raw.githubusercontent.com/shrikantsky/GHARITWEBIMAGES/main/uploads/903E1E14-AC94-403C-8259-AFF2C12B43B0.jpg" alt="Gaurav Khaire">
+    </div>
+
+    <div class="info-bar">
+        <div class="info-item"><div class="label">Base</div><div class="value">INDIA /<br>MUMBAI</div></div>
+        <div class="info-item"><div class="label">Specialization</div><div class="value">COMMERCIAL /<br>FASHION /<br>EDITORIAL</div></div>
+        <div class="info-item">
+            <div class="social-circles">
+                <a href="https://www.instagram.com/gaurravkkhairre?igsh=dzdlODNmZjdsMHVx&utm_source=qr" target="_blank" class="circle">Ig</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- The Model -->
+    <div class="section-two">
+        <h2 class="section-header">THE MODEL</h2>
+        <div class="profile-grid">
+            <div class="profile-img">
+                <img src="https://raw.githubusercontent.com/shrikantsky/GHARITWEBIMAGES/main/uploads/3C90AE7D-38B2-4523-88FF-88D8720072BA.jpg" alt="Gaurav Khaire Portrait">
+                <div class="img-caption">Gaurav Khaire<br>Commercial & Fashion Model</div>
+                <div class="birth-date">5'8" / 173cm</div>
+            </div>
+            <div class="profile-text">
+                <p>Gaurav began his modeling journey with a focus on commercial and product photography, quickly gaining recognition for his natural on-camera presence and professional work ethic.</p>
+                <p>His breakthrough came with a major campaign for Samsung, where his ability to blend technical product showcasing with lifestyle appeal set him apart in the industry.</p>
+                <p>Today, Gaurav continues to work with both established brands and emerging designers, bringing the same dedication and versatility to every shoot.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quote -->
+    <div class="quote-section">
+        <div class="quote-block">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">His presence on set is remarkable — professional, adaptable, and always bringing something unexpected to the frame. A true collaborator in every sense.</p>
+            <div class="quote-author">CREATIVE DIRECTOR</div>
+            <svg class="star-icon" viewBox="0 0 40 40" fill="none" stroke="#1a1a1a" stroke-width="1">
+                <path d="M20 2 L23 15 L38 15 L26 23 L30 38 L20 28 L10 38 L14 23 L2 15 L17 15 Z"/>
+            </svg>
+        </div>
+        <div class="side-images">
+            <img src="https://raw.githubusercontent.com/shrikantsky/GHARITWEBIMAGES/main/uploads/7C2868F1-97B2-4286-965B-F13E354927A6.jpg" alt="Side profile">
+            <img src="https://raw.githubusercontent.com/shrikantsky/GHARITWEBIMAGES/main/uploads/DDA4F607-5062-4A9C-8559-01B77FD44B6D.jpg" alt="Side profile 2">
+        </div>
+    </div>
+
+    <!-- Portfolio Grid -->
+    <div class="photo-grid">
+        <div class="grid-label">Portfolio</div>
+        <div class="grid">
+            <div class="grid-item"><img src="https://raw.githubusercontent.com/shrikantsky/GHARITWEBIMAGES/main/uploads/3C90AE7D-38B2-4523-88FF-88D8720072BA.jpg" alt="Front"></div>
+            <div class="grid-item"><img src="https://raw.githubusercontent.com/shrikantsky/GHARITWEBIMAGES/main/uploads/DDA4F607-5062-4A9C-8559-01B77FD44B6D.jpg" alt="Left Side"></div>
+            <div class="grid-item"><img src="https://raw.githubusercontent.com/shrikantsky/GHARITWEBIMAGES/main/uploads/7C2868F1-97B2-4286-965B-F13E354927A6.jpg" alt="Right Side"></div>
+            <div class="grid-item"><img src="https://raw.githubusercontent.com/shrikantsky/GHARITWEBIMAGES/main/uploads/903E1E14-AC94-403C-8259-AFF2C12B43B0.jpg" alt="Full Body"></div>
+        </div>
+    </div>
+
+    <!-- ZARA Carousel -->
+    <div class="carousel-section">
+        <div class="grid-label">Zara — Editorial</div>
+        <div class="carousel-wrap">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-slide">
+                    <img src="https://raw.githubusercontent.com/shrikantsky/GHARITWEBIMAGES/main/uploads/What%20do%20you%20think%2C%20%40zara%20%23ZaraStyle%20%23ModelVibes.The%20man%20in%20this%20picture%20is%20%40gauravxkhaire%23ZaraI%202.jpg" alt="Zara 1">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://raw.githubusercontent.com/shrikantsky/GHARITWEBIMAGES/main/uploads/What%20do%20you%20think%2C%20%40zara%20%23ZaraStyle%20%23ModelVibes.The%20man%20in%20this%20picture%20is%20%40gauravxkhaire%23ZaraI%203.jpg" alt="Zara 2">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://raw.githubusercontent.com/shrikantsky/GHARITWEBIMAGES/main/uploads/What%20do%20you%20think%2C%20%40zara%20%23ZaraStyle%20%23ModelVibes.The%20man%20in%20this%20picture%20is%20%40gauravxkhaire%23ZaraI%204.jpg" alt="Zara 3">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://raw.githubusercontent.com/shrikantsky/GHARITWEBIMAGES/main/uploads/What%20do%20you%20think%2C%20%40zara%20%23ZaraStyle%20%23ModelVibes.The%20man%20in%20this%20picture%20is%20%40gauravxkhaire%23ZaraI%205.jpg" alt="Zara 4">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://raw.githubusercontent.com/shrikantsky/GHARITWEBIMAGES/main/uploads/What%20do%20you%20think%2C%20%40zara%20%23ZaraStyle%20%23ModelVibes.The%20man%20in%20this%20picture%20is%20%40gauravxkhaire%23ZaraI%206.jpg" alt="Zara 5">
+                </div>
+            </div>
+            <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1)">&#8592;</button>
+            <button class="carousel-btn carousel-next" onclick="moveCarousel(1)">&#8594;</button>
+        </div>
+        <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+
+    <!-- Samsung Videos -->
+    <div class="video-section">
+        <div class="grid-label" style="margin-bottom:30px;">Samsung — Brand Collaborations</div>
+        <div class="video-grid">
+            <div class="video-item">
+                <video controls playsinline>
+                    <source src="https://raw.githubusercontent.com/shrikantsky/GHARITWEBIMAGES/main/uploads/%23collaboration%20Galaxy%20Z%20Flip%20tucked%20away%2C%20each%20twist%20and%20turn%20unfolds%20into%20a%20hyperlapse%20masterpi.MP4" type="video/mp4">
+                </video>
+                <div class="video-caption">Samsung Galaxy Z Flip — Hyperlapse</div>
+            </div>
+            <div class="video-item">
+                <video controls playsinline>
+                    <source src="https://raw.githubusercontent.com/shrikantsky/GHARITWEBIMAGES/main/uploads/%23collaboration%20Samsung%20Galaxy%20Z%20Flip%205%20becomes%20a%20storyteller%20in%20itself.%20With%20each%20flip%2C%20I%20flex%20n%20(1).MP4" type="video/mp4">
+                </video>
+                <div class="video-caption">Samsung Galaxy Z Flip 5 — Storyteller</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Measurements -->
+    <div class="measurements">
+        <div class="grid-label" style="text-align:center; margin-bottom:30px;">Measurements</div>
+        <div class="measurements-grid">
+            <div class="measure-item"><div class="num">5'8"</div><div class="label">Height</div></div>
+            <div class="measure-item"><div class="num">36"</div><div class="label">Bust</div></div>
+            <div class="measure-item"><div class="num">30"</div><div class="label">Waist</div></div>
+            <div class="measure-item"><div class="num">34"</div><div class="label">Hips</div></div>
+            <div class="measure-item"><div class="num">UK9</div><div class="label">Shoe</div></div>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact">
+        <h3>Contact</h3>
+        <div class="contact-info">
+            <a href="mailto:gauravxwork@gmail.com">gauravxwork@gmail.com</a><br>
+            <a href="tel:+919867447175">+91 98674 47175</a><br>
+            Mumbai, India
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>Gaurav Khaire</div>
+        <div>Model Portfolio</div>
+    </div>
+
+</div>
+
+<script>
+    let current = 0;
+    const total = 5;
+    const track = document.getElementById('carouselTrack');
+    const dotsContainer = document.getElementById('carouselDots');
+
+    // Build dots
+    for (let i = 0; i < total; i++) {
+        const d = document.createElement('div');
+        d.className = 'dot' + (i === 0 ? ' active' : '');
+        d.onclick = () => goTo(i);
+        dotsContainer.appendChild(d);
+    }
+
+    function goTo(n) {
+        current = (n + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    function moveCarousel(dir) { goTo(current + dir); }
+
+    // Auto advance every 4s
+    setInterval(() => moveCarousel(1), 4000);
+</script>
+</body>
+</html>
