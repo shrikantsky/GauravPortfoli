@@ -1,1 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Ardourr</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+    :root {
+      --ink: #0e0e0e;
+      --paper: #f5f0e8;
+      --accent: #c8502a;
+      --muted: #7a7060;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 2.5rem 4rem;
+      position: relative;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.1s;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      margin-left: 2rem;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
+
+    .hero-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 0 2rem;
+    }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.3s;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      line-height: 1.0;
+      font-weight: 700;
+      max-width: 14ch;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.45s;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      margin-top: 2.5rem;
+      font-size: 1.05rem;
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 42ch;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.65s;
+    }
+
+    .hero-cta {
+      margin-top: 3rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.8s;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      background: var(--ink);
+      color: var(--paper);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.25s, color 0.25s;
+    }
+    .btn:hover { background: var(--accent); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+    }
+    .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+
+    /* Decorative line */
+    .deco-line {
+      position: absolute;
+      right: 4rem;
+      top: 50%;
+      transform: translateY(-50%);
+      writing-mode: vertical-rl;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 1s;
+    }
+
+    .deco-line::before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 80px;
+      background: var(--muted);
+      margin: 0 auto 1rem;
+    }
+
+    footer-hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 1.1s;
+    }
+
+    /* About section */
+    .section {
+      padding: 6rem 4rem;
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .about-grid h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.2;
+    }
+
+    .about-grid p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-weight: 300;
+      font-size: 1.05rem;
+    }
+
+    /* Contact */
+    .contact {
+      padding: 6rem 4rem;
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .contact h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-style: italic;
+    }
+
+    .contact a.btn {
+      background: var(--paper);
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .contact a.btn:hover { background: var(--accent); color: var(--paper); }
+
+    /* Footer */
+    footer {
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .hero, .section, .contact, footer { padding: 2rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .deco-line { display: none; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <header>
+      <div class="logo">The Ardourr</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <div class="hero-body">
+      <p class="eyebrow">Welcome to my space</p>
+      <h1>Built with <em>passion</em> &amp; purpose.</h1>
+      <p class="hero-sub">This is theardourr.in — a place where ideas take shape, work gets done, and things worth making come to life.</p>
+      <div class="hero-cta">
+        <a href="#about" class="btn">Learn More</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+
+    <div class="deco-line">theardourr.in</div>
+
+    <footer-hero>
+      <span>© 2026 The Ardourr</span>
+      <span>shrikantsky</span>
+    </footer-hero>
+  </section>
+
+  <section class="section" id="about">
+    <p class="section-label">About</p>
+    <div class="about-grid">
+      <h2>Driven by curiosity, shaped by craft.</h2>
+      <p>This is my personal corner of the internet. I build things, explore ideas, and put work out into the world with care and intention. Every project is a chance to do something a little better than before.</p>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Let's connect.</h2>
+    <a href="mailto:hello@theardourr.in" class="btn">Say Hello →</a>
+  </section>
+
+  <footer>
+    <span>theardourr.in</span>
+    <span>Made with ♥</span>
+  </footer>
+
+</body>
+</html>
