@@ -1,92 +1,192 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaurav Khaire</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #f5f5f5;
-            color: #1a1a1a;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .card {
-            background: #fff;
-            max-width: 480px;
-            width: 90%;
-            padding: 60px 50px;
-            text-align: center;
-        }
-        .name {
-            font-size: 0.7rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-weight: 500;
-            margin-bottom: 6px;
-        }
-        .title {
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #888;
-            margin-bottom: 40px;
-        }
-        .divider {
-            width: 30px;
-            height: 1px;
-            background: #ccc;
-            margin: 0 auto 40px;
-        }
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-        .link-btn {
-            display: block;
-            padding: 14px 20px;
-            border: 1px solid #e0e0e0;
-            text-decoration: none;
-            color: #1a1a1a;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: all 0.25s;
-        }
-        .link-btn:hover {
-            background: #1a1a1a;
-            color: #fff;
-            border-color: #1a1a1a;
-        }
-        .link-btn.ig {
-            border-color: #1a1a1a;
-        }
-        .footer-text {
-            margin-top: 40px;
-            font-size: 0.6rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #ccc;
-        }
-    </style>
-</head>
-<body>
-    <div class="card">
-        <div class="name">Gaurav Khaire</div>
-        <div class="title">Fashion Model — Mumbai</div>
-        <div class="divider"></div>
-        <div class="links">
-            <a href="portfolio.html" class="link-btn">Portfolio</a>
-            <a href="https://www.instagram.com/gaurravkkhairre?igsh=dzdlODNmZjdsMHVx&utm_source=qr" target="_blank" class="link-btn ig">Instagram</a>
-            <a href="mailto:gauravxwork@gmail.com" class="link-btn">Contact</a>
-        </div>
-        <div class="footer-text">theardourr.in</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:wght@300;400&display=swap');
+
+  .gk-root {
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0d0d0b;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 20px;
+  }
+
+  .gk-grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .gk-accent-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, #c9a96e);
+  }
+
+  .gk-card {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 340px;
+    width: 100%;
+    animation: fadeUp 1s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .gk-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #c9a96e;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .gk-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #f0ebe3;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .gk-name em {
+    font-style: italic;
+    color: #c9a96e;
+  }
+
+  .gk-location {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #5a5a52;
+    margin-bottom: 48px;
+  }
+
+  .gk-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .gk-btn {
+    display: block;
+    padding: 15px 24px;
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: all 0.35s ease;
+    position: relative;
+    cursor: pointer;
+    border: none;
+  }
+
+  .gk-btn-outline {
+    color: #8a8a80;
+    border: 0.5px solid #2a2a26;
+    background: transparent;
+  }
+  .gk-btn-outline:hover {
+    color: #f0ebe3;
+    border-color: #5a5a52;
+    background: #1a1a16;
+  }
+
+  .gk-btn-gold {
+    color: #c9a96e;
+    border: 0.5px solid #c9a96e;
+    background: transparent;
+    letter-spacing: 5px;
+  }
+  .gk-btn-gold:hover {
+    background: #c9a96e;
+    color: #0d0d0b;
+  }
+
+  .gk-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .gk-divider-line {
+    flex: 1;
+    height: 0.5px;
+    background: #2a2a26;
+  }
+  .gk-divider-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #c9a96e;
+    opacity: 0.5;
+  }
+
+  .gk-footer {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #2e2e2a;
+  }
+
+  .gk-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+  }
+  .gk-corner-tl { top: 12px; left: 12px; border-top: 0.5px solid #c9a96e33; border-left: 0.5px solid #c9a96e33; }
+  .gk-corner-tr { top: 12px; right: 12px; border-top: 0.5px solid #c9a96e33; border-right: 0.5px solid #c9a96e33; }
+  .gk-corner-bl { bottom: 12px; left: 12px; border-bottom: 0.5px solid #c9a96e33; border-left: 0.5px solid #c9a96e33; }
+  .gk-corner-br { bottom: 12px; right: 12px; border-bottom: 0.5px solid #c9a96e33; border-right: 0.5px solid #c9a96e33; }
+</style>
+
+<div class="gk-root">
+  <div class="gk-grain"></div>
+  <div class="gk-accent-line"></div>
+
+  <div class="gk-corner gk-corner-tl"></div>
+  <div class="gk-corner gk-corner-tr"></div>
+  <div class="gk-corner gk-corner-bl"></div>
+  <div class="gk-corner gk-corner-br"></div>
+
+  <div class="gk-card">
+    <div class="gk-eyebrow">Fashion Model</div>
+    <div class="gk-name">Gaurav <em>Khaire</em></div>
+    <div class="gk-location">Mumbai, India</div>
+
+    <div class="gk-links">
+      <a href="portfolio.html" class="gk-btn gk-btn-outline">Portfolio</a>
+      <a href="https://www.instagram.com/gaurravkkhairre?igsh=dzdlODNmZjdsMHVx&utm_source=qr" target="_blank" class="gk-btn gk-btn-gold">Instagram</a>
+      <a href="mailto:gauravxwork@gmail.com" class="gk-btn gk-btn-outline">Contact</a>
     </div>
-</body>
-</html>
+
+    <div class="gk-divider">
+      <div class="gk-divider-line"></div>
+      <div class="gk-divider-dot"></div>
+      <div class="gk-divider-line"></div>
+    </div>
+
+    <div class="gk-footer">theardourr.in</div>
+  </div>
+</div>
